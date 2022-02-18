@@ -4,6 +4,7 @@ import db from "./db/db.js";
 import dotenv from "dotenv";
 import roleRoutes from "./routes/roleRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import bookRoutes from "./routes/bookRoutes.js";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use("/api/role", roleRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/book", bookRoutes);
 
 app.listen(process.env.PORT, () => console.log("Backend Server running on Port:", process.env.PORT));
 

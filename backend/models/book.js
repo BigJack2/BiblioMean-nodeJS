@@ -1,16 +1,17 @@
-import mongoose from "mngoose";
+import mongoose from "mongoose";
 
 const bookSchema = new mongoose.Schema({
   nameBook: String,
   author: String,
+  description: String,
   secction: String,
   typePublic: String,
   priceLeasing: Number,
   priceBook: Number,
   user: { type: mongoose.Schema.ObjectId, ref: "users" },
-  registerdate: { tyoe: Date, default: Date.now },
+  registerDate: { type: Date, default: Date.now },
   statusLeasing: Boolean,
-  dbstatus: true
+  dbStatus: Boolean,
 });
 
 const book = mongoose.model("books", bookSchema);
