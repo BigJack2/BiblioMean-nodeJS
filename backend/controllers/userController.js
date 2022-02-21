@@ -72,4 +72,42 @@ const login = async (req, res) => {
   }
 };
 
-export default { registerUser, listUser, login };
+
+const deleteUser = async (req, res) => {
+  if (!req.params["_id"]) return res.status(400).send({ message: "Imcomplete data" });
+
+  const users = await user.findByIdAndUpdate(req.params["_id"], { dbStatus: false });
+
+  //con operador ternario en vez de un if
+  return !users
+    ? res.status(400).send({ message: "Error deleting user" })
+    : res.status(200).send({ message: "User delete" });
+};
+
+
+const updateUser = async (req, res) => {
+  if (!req.body._id || !req.body.name || !req.body.role || !req.body.email)
+    return res.status(400).send({ message: "Imcomplete data" });
+
+  let pass = "";
+
+  if (!req.body.password) {
+    const findUser = await user.findOne({ email: req.body.email });
+
+    pass = findUser.password;
+  } else {
+    pass = await bcrypt.hash(req.body.password, 10)
+  }
+
+  const editUser = await user.findByIdAndUpdate(req.body._id, {
+    name: req.body.name,
+    password: pass,
+    role: req.body.role
+  });
+
+  if (!editUser) return res.status(500).send({ message: "Error editing user" });
+  return res.status(200).send({ message: "User updated" });
+};
+
+
+export default { registerUser, listUser, login, updateUser, deleteUser };

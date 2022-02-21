@@ -10,4 +10,8 @@ router.post("/registerBook", existingBook, bookController.registerBook);
 
 router.get("/listBook/:nameBook?", bookController.listBook);
 
+router.put("/deleteBook/:_id", bookController.deleteBook);
+
+router.put("/updateBook", bookController.updateBook);
+
 export default router;

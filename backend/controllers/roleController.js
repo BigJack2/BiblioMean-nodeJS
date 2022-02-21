@@ -20,14 +20,38 @@ const registerRole = async (req, res) => {
 
 
 const listRole = async (req, res) => {
-  //populate es para que me traiga todo asociado al id de role
+
   let roles = await role.find();
 
-  //si el tamaño de items del array es cero entonces no hay nada
   if (roles.length === 0) return res.status(400).send({ message: "No search results" });
 
   return res.status(200).send({ roles });
 };
 
 
-export default { registerRole, listRole };
+const deleteRole = async (req, res) => {
+  if (!req.params["_id"]) return res.status(400).send({ message: "Imcomplete data" });
+
+  const users = await role.findByIdAndUpdate(req.params["_id"], { dbStatus: false });
+
+  return !users
+    ? res.status(400).send({ message: "Error deleting role" })
+    : res.status(200).send({ message: "Role delete" });
+};
+
+
+const updateRole = async (req, res) => {
+  if (!req.body._id || !req.body.name || !req.body.description)
+    return res.status(400).send({ message: "Imcomplete data" });
+
+  const editRole = await role.findByIdAndUpdate(req.body._id, {
+    name: req.body.name,
+    description: req.body.description,
+  });
+
+  if (!editRole) return res.status(500).send({ message: "Error editing role" });
+  return res.status(200).send({ message: "Role updated" });
+};
+
+
+export default { registerRole, listRole, updateRole, deleteRole };

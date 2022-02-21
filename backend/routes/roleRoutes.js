@@ -7,4 +7,8 @@ router.post("/registerRole", roleController.registerRole);
 
 router.get("/listRole", roleController.listRole);
 
+router.put("/deleteRole/:_id", roleController.deleteRole);
+
+router.put("/updateRole", roleController.updateRole);
+
 export default router;

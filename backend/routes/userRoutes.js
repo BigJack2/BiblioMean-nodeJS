@@ -15,4 +15,8 @@ router.get("/listUser/:name?", userController.listUser);
 
 router.post("/login", userController.login);
 
+router.put("/delete/:_id", userController.deleteUser);
+
+router.put("/updateUser", userController.updateUser);
+
 export default router;
