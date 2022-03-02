@@ -1,0 +1,15 @@
+.bgFooter {
+  background-color: #383d38;
+  color: #e91e63;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #e91e63;
+}
