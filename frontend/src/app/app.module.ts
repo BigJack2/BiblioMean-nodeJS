@@ -24,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './home/login/login.component';
+import { ListBookComponent } from './board/list-book/list-book.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoginComponent } from './home/login/login.component';
     RegisterComponent,
     RegisterUserComponent,
     LoginComponent,
+    ListBookComponent,
   ],
   imports: [
     BrowserModule,
