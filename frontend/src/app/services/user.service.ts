@@ -19,4 +19,21 @@ export class UserService {
   login(user: any) {
     return this._http.post<any>(this.env + 'user/login', user);
   }
+
+  //Metodo para saber si estoy logueado
+  loggedIn() {
+    //Si la respuesta es un true o un false se usa esta forma
+    //Solo hay una respuesta  devuelvame lo que tenga sea true o false
+    return !!localStorage.getItem('token');
+  }
+
+  getToken() {
+    //obtenemos el token
+    return localStorage.getItem('token');
+  }
+
+  logout() {
+    //Eliminamos el token para eliminar el login
+    localStorage.removeItem('token');
+  }
 }

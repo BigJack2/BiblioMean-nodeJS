@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
         (res) => {
           console.log(res);
           localStorage.setItem('token', res.jwtToken);
-          this._router.navigate(['/loginUser']);
+          this._router.navigate(['/listBook']);
           this.message = 'Successful user registration';
           this.openSnackBarSuccesfull();
           this.registerData = {};
